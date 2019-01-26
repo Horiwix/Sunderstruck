@@ -5,6 +5,8 @@
 
 Addon tracks Sunder Armor casts of players in party/raid and displays recent casts in a movable/resizeable/hideable panel. Each row displays player's name that casted Sunder and a color based on it's success (red - missed, green - hit).
 
+NOTE: only tracks Sunder Armor casts of those who also use this addon!
+
 ![Sunderstruck GUI](https://i.imgur.com/E5C0EqI.gif)
 
 ## Requirements
