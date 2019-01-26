@@ -19,6 +19,8 @@ end
 local ERROR_WAIT_TIME = 0.25
 -- Table with all sunder casts -> {key: PlayerName, val: SunderCount}
 local history = {}
+-- Names of Players that have the addon
+local with_addon = {}
 
 local sunder_cast_time = nil
 local err_cant_cast = false
@@ -39,8 +41,17 @@ function me.EVENT()
         err_cant_cast = true
     elseif event == 'CHAT_MSG_SPELL_SELF_DAMAGE' then
         err_missed = true
-    elseif event == 'CHAT_MSG_ADDON' and arg1 == "Sunderstruck" then
+    elseif event == 'CHAT_MSG_ADDON' and arg1 == 'Sunderstruck' then
+        with_addon[arg4] = true
         me.newsunder(arg4, arg2)
+    elseif event == 'CHAT_MSG_ADDON' and arg1 == 'KLHTMHOOK' then
+        -- event from DPSMate - will be used if player does not have Sunderstruck
+        if not arg2 or with_addon[arg4] ~= nil then return end
+        for cat, _ in pairs(loadstring("return {"..arg2.."}")()) do
+            if cat == 'Sunder Armor' then
+                me.newsunder(arg4, 'false')
+            end
+        end
     end
 end
 

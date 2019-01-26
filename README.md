@@ -7,7 +7,7 @@ Addon tracks Sunder Armor casts of players in party/raid and displays recent cas
 
 A history of every sunder casted per player is kept internally and is refreshed when WoW GUI is reloaded (`/reload`) or user disconnects. To print history to chat - type `/ss history`.
 
-**NOTE:** only tracks Sunder Armor casts of those who also use this addon!
+**NOTE:** only tracks Sunder Armor casts of those who also have this addon AND/OR [DPSMate](https://github.com/Geigerkind/DPSMate)!
 
 ![Sunderstruck GUI](https://i.imgur.com/E5C0EqI.gif)
 
@@ -15,8 +15,10 @@ A history of every sunder casted per player is kept internally and is refreshed 
 
 Required dependency - [KLHThreatMeter](https://github.com/Linae-Kronos/KLH-Threat-Meter-17.35) (KTM 17.35)
 
-Addon depends on KTM to bind on it's function to track when Sunder Armor is casted.
+Addon depends on KTM to bind on its function to track when Sunder Armor is casted.
 More information why tracking it is difficult on KTM's repository - [link](https://raw.githubusercontent.com/Linae-Kronos/KLH-Threat-Meter-17.35/master/KTM%2017.35/KLHThreatMeter/Readme/Warriors%20-%20Read%20Me!.txt)
+
+[DPSMate](https://github.com/Geigerkind/DPSMate) Events are also used to track sunder casts of other players (that do not use this addons) - this means that you will see information from those who have DPSMate installed (you don't have to have it installed yourself).
 
 ## Installation
 
