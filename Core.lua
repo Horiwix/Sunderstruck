@@ -68,7 +68,7 @@ function me.newsunder(caster, missed)
         _, _, _, _, yOfs = row:GetPoint()
         row:SetPoint("TOPLEFT", 0, yOfs-20)
     end
-    
+
     -- reuse last row    
     last_frame = last_frame > 19 and 1 or last_frame + 1
     local last_row = _G(me:GetName() .. "_Rows" .. last_frame)
@@ -90,9 +90,9 @@ end
 klhtm.combat.addsunderthreat = me.addsunderthreat
 
 function me.print(msg)
-	if DEFAULT_CHAT_FRAME and msg then
-		DEFAULT_CHAT_FRAME:AddMessage(LIGHTYELLOW_FONT_COLOR_CODE .. '<sunderstruck> ' .. msg)
-	end
+    if DEFAULT_CHAT_FRAME and msg then
+        DEFAULT_CHAT_FRAME:AddMessage(LIGHTYELLOW_FONT_COLOR_CODE .. '<sunderstruck> ' .. msg)
+    end
 end
 
 function me.status(test)

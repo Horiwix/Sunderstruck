@@ -3,15 +3,15 @@
     <StatusBar name="Sunderstruck_RowTemplate" hidden="true" virtual="true">
         <Size y="20" />
         <Anchors>
-			<Anchor point="TOPLEFT" />
+            <Anchor point="TOPLEFT" />
             <Anchor point="TOPRIGHT" />
-		</Anchors>
+        </Anchors>
         <Layers>
             <Layer level="ARTWORK">
                 <FontString name="$parent_Name" inherits="GameFontNormal" text="testing123456789">
                     <Anchors>
-						<Anchor point="TOPLEFT" />
-						<Anchor point="BOTTOMRIGHT" />
+                        <Anchor point="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" />
                     </Anchors>
                 </FontString>
             </Layer>
@@ -26,14 +26,14 @@
             </Layer>
         </Layers>
     </StatusBar>
-    
+
     <!-- Main frame -->
     <ScrollFrame name="Sunderstruck_Frame" parent="UIParent" movable="true" enablemouse="true" resizable="true" frameStrata="low" virtual="true">
         <Size x="150" y="100" />
         <ResizeBounds>
-			<minResize x="80" y="50"/>
-			<maxResize x="400" y="400"/>
-		</ResizeBounds>
+            <minResize x="80" y="50"/>
+            <maxResize x="400" y="400"/>
+        </ResizeBounds>
         <Anchors>
             <Anchor point="CENTER" />
         </Anchors>
