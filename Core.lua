@@ -78,11 +78,17 @@ function me.newsunder(caster, missed)
     last_frame = last_frame > 19 and 1 or last_frame + 1
     local last_row = _G(me:GetName() .. "_Rows" .. last_frame)
     _G(last_row:GetName() .. "_Name"):SetText(caster)
-    if missed == "true" then
-        _G(last_row:GetName() .. "_Background"):SetTexture(1,0,0,Sunderstruck_Vars.row_alpha)
-    else
-        _G(last_row:GetName() .. "_Background"):SetTexture(0,1,0,Sunderstruck_Vars.row_alpha)
+    
+    local new_alpha = Sunderstruck_Vars.row_alpha
+    if math.mod(last_frame,2) == 0 then
+        new_alpha = Sunderstruck_Vars.row_alpha - 0.1 < 0 and 0 or Sunderstruck_Vars.row_alpha - 0.1
     end
+    if missed == "true" then
+        _G(last_row:GetName() .. "_Background"):SetTexture(1,0,0,new_alpha)
+    else
+        _G(last_row:GetName() .. "_Background"):SetTexture(0,1,0,new_alpha)
+    end
+    
     last_row:SetPoint("TOPLEFT", 0, 0)
     last_row:Show()
 end
@@ -131,7 +137,11 @@ end
 
 function me.check_row_alpha()
     for i=1,20 do
-        _G(me:GetName() .. "_Rows" .. i .. "_Background"):SetTexture(0,0,0,Sunderstruck_Vars.row_alpha)
+        local new_alpha = Sunderstruck_Vars.row_alpha
+        if math.mod(i,2) == 0 then
+            new_alpha = Sunderstruck_Vars.row_alpha - 0.2 < 0 and 0 or Sunderstruck_Vars.row_alpha - 0.2
+        end
+        _G(me:GetName() .. "_Rows" .. i .. "_Background"):SetTexture(0,0,0,new_alpha)
     end
 end
 
