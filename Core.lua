@@ -43,20 +43,25 @@ function me.EVENT()
 end
 
 function me.UPDATE()
-    if sunder_cast_time and (err_cant_cast or err_missed or GetTime() - sunder_cast_time >= ERROR_WAIT_TIME) then
-        sunder_cast_time = nil
-        -- not Out of range / out of rage / etc...
-        if not err_cant_cast then
-            if GetNumRaidMembers() > 0 then
-                SendAddonMessage("Sunderstruck", tostring(err_missed), "RAID")
-            elseif GetNumPartyMembers() > 0 then
-                SendAddonMessage("Sunderstruck", tostring(err_missed), "PARTY")
-            else
-                me.newsunder(UnitName("player"), tostring(err_missed))
+    if sunder_cast_time then
+        if err_cant_cast or err_missed or GetTime() - sunder_cast_time >= ERROR_WAIT_TIME then
+            sunder_cast_time = nil
+            -- not Out of range / out of rage / etc...
+            if not err_cant_cast then
+                if GetNumRaidMembers() > 0 then
+                    SendAddonMessage("Sunderstruck", tostring(err_missed), "RAID")
+                elseif GetNumPartyMembers() > 0 then
+                    SendAddonMessage("Sunderstruck", tostring(err_missed), "PARTY")
+                else
+                    me.newsunder(UnitName("player"), tostring(err_missed))
+                end
             end
+            err_cant_cast = false
+            err_missed = false
         end
+    else
         err_cant_cast = false
-        err_missed = false
+        err_missed = false 
     end
 end
 

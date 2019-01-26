@@ -1,5 +1,5 @@
 ## Interface: 11100
-## Title: KLHSunderstruck |cff7fff7f <AC/DC>|r
+## Title: Sunderstruck |cff7fff7f <AC/DC>|r
 ## Author: Horiwix
 ## Notes: Gives information about nearby sunder casts
 ## DefaultState: Enabled
