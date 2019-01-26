@@ -1,0 +1,112 @@
+<UI xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <!-- A data row for a single person in the raid -->
+    <StatusBar name="Sunderstruck_RowTemplate" hidden="true" virtual="true">
+        <Size y="20" />
+        <Anchors>
+			<Anchor point="TOPLEFT" />
+            <Anchor point="TOPRIGHT" />
+		</Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <FontString name="$parent_Name" inherits="GameFontNormal" text="testing123456789">
+                    <Anchors>
+						<Anchor point="TOPLEFT" />
+						<Anchor point="BOTTOMRIGHT" />
+                    </Anchors>
+                </FontString>
+            </Layer>
+            <Layer level="BACKGROUND">
+                <Texture name="$parent_Background">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" />
+                    </Anchors>
+                    <Color r="0" g="0" b="0" a="0.5" />
+                </Texture>
+            </Layer>
+        </Layers>
+    </StatusBar>
+    
+    <!-- Main frame -->
+    <ScrollFrame name="Sunderstruck_Frame" parent="UIParent" movable="true" enablemouse="true" resizable="true" frameStrata="low" virtual="true">
+        <Size x="150" y="100" />
+        <ResizeBounds>
+			<minResize x="80" y="50"/>
+			<maxResize x="400" y="400"/>
+		</ResizeBounds>
+        <Anchors>
+            <Anchor point="CENTER" />
+        </Anchors>
+        <Scripts>
+            <OnLoad>
+                this:SetClampedToScreen(true)
+                this:SetVerticalScroll(0)
+            </OnLoad>
+            <OnMouseDown>
+                if arg1 == "LeftButton" and not Sunderstruck_Vars.lock then
+                    this:StartMoving()
+                end
+            </OnMouseDown>
+            <OnMouseUp>
+                this:StopMovingOrSizing()
+            </OnMouseUp>
+        </Scripts>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parent_Background">
+                    <Color r="0" g="0" b="0" a="0.3"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+         <!-- Resize button -->
+         <Frames>
+        <Button name="$parent_Resize" frameStrata="HIGH">
+            <Size x="14" y="14" />
+            <Anchors>
+                <Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" />
+            </Anchors>
+            <Scripts>
+                <OnMouseDown>
+                    this:GetParent():StartSizing()
+                </OnMouseDown>
+                <OnMouseUp>
+                    this:GetParent():StopMovingOrSizing()
+                </OnMouseUp>
+            </Scripts>
+            <NormalTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Up"/>
+            <PushedTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Down"/>
+            <HighlightTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Highlight" alphaMode="ADD"/>
+        </Button>
+        </Frames>
+        <ScrollChild>
+            <Frame name="$parent_Rows">
+                <Frames>
+                    <StatusBar name="$parent1" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent2" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent3" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent4" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent5" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent6" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent7" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent8" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent9" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent10" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent11" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent12" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent13" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent14" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent15" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent16" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent17" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent18" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent19" inherits="Sunderstruck_RowTemplate" />
+                    <StatusBar name="$parent20" inherits="Sunderstruck_RowTemplate" />
+                </Frames>
+            </Frame>
+        </ScrollChild>
+    </ScrollFrame>
+</UI>

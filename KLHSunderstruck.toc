@@ -1,0 +1,12 @@
+## Interface: 11100
+## Title: KLHSunderstruck |cff7fff7f <AC/DC>|r
+## Author: Horiwix
+## Notes: Gives information about nearby sunder casts
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariablesPerCharacter: Sunderstruck_Vars
+
+## RequiredDeps: KLHThreatMeter
+
+Frame.xml
+Core.lua
