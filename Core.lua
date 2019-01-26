@@ -17,6 +17,8 @@ end
 
 -- Wait time for errors after sunder cast
 local ERROR_WAIT_TIME = 0.25
+-- Table with all sunder casts -> {key: PlayerName, val: SunderCount}
+local history = {}
 
 local sunder_cast_time = nil
 local err_cant_cast = false
@@ -91,6 +93,8 @@ function me.newsunder(caster, missed)
     
     last_row:SetPoint("TOPLEFT", 0, 0)
     last_row:Show()
+    
+    history[caster] = (history[caster] or 0) + 1
 end
 
 me.savedaddsunderthreat = klhtm.combat.addsunderthreat
@@ -139,7 +143,7 @@ function me.check_row_alpha()
     for i=1,20 do
         local new_alpha = Sunderstruck_Vars.row_alpha
         if math.mod(i,2) == 0 then
-            new_alpha = Sunderstruck_Vars.row_alpha - 0.2 < 0 and 0 or Sunderstruck_Vars.row_alpha - 0.2
+            new_alpha = Sunderstruck_Vars.row_alpha - 0.1 < 0 and 0 or Sunderstruck_Vars.row_alpha - 0.1
         end
         _G(me:GetName() .. "_Rows" .. i .. "_Background"):SetTexture(0,0,0,new_alpha)
     end
@@ -181,6 +185,10 @@ function SlashCmdList.SUNDERSTRUCK(msg)
             row:SetPoint("TOPLEFT", me, "TOPLEFT", 0, 0)
             row:Hide()
         end
+    elseif cmd == 'history' then
+        for k in pairs(history) do
+            me.print(k .. ' : ' .. history[k])
+        end
     else
         me.print('Usage:')
         me.print('- hide [' .. me.status(Sunderstruck_Vars.hide) .. ']')
@@ -189,5 +197,6 @@ function SlashCmdList.SUNDERSTRUCK(msg)
         me.print('- row_alpha <0-1> [|cff444444' .. Sunderstruck_Vars.row_alpha .. '|r]')
         me.print('- test')
         me.print('- clear')
+        me.print('- history')
     end
 end

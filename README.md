@@ -5,7 +5,9 @@
 
 Addon tracks Sunder Armor casts of players in party/raid and displays recent casts in a movable/resizeable/hideable panel. Each row displays player's name that casted Sunder and a color based on it's success (red - missed, green - hit).
 
-NOTE: only tracks Sunder Armor casts of those who also use this addon!
+A history of every sunder casted per player is kept internally and is refreshed when WoW GUI is reloaded (`/reload`) or user disconnects. To print history to chat - type `/ss history`.
+
+**NOTE:** only tracks Sunder Armor casts of those who also use this addon!
 
 ![Sunderstruck GUI](https://i.imgur.com/E5C0EqI.gif)
 
@@ -37,7 +39,7 @@ Interface/
 
 type `/ss` to display usage information:
 
-![Sunderstruck Usage](https://i.imgur.com/mwnLsaI.png)
+![Sunderstruck Usage](https://i.imgur.com/MA00COd.png)
 
 ```
 /ss hide            -> hides display panel (still tracks and sends information)
@@ -46,4 +48,5 @@ type `/ss` to display usage information:
 /ss row_alpha <0-1> -> changes the alpha channel of player rows (0 - invisible, 1 - fully visible; Name will always be displayed)
 /ss test            -> displays all player rows with test names
 /ss clear           -> clears and reset the rows
+/ss history         -> prints sunder count per player to chat (history resets on GUI reload)
 ```
