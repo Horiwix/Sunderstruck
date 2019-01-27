@@ -51,5 +51,5 @@ type `/ss` to display usage information:
 /ss test            -> displays all player rows with test names
 /ss clear           -> clears and reset the rows AND sunders history
 /ss history         -> prints sunder count per player to chat (history resets on GUI reload)
-/ss check           -> prints version information from other players with this addon
+/ss check           -> prints version information from other players with this addon AND KTM+DPSMate (their sunders are also recorded)
 ```
