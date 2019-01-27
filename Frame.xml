@@ -77,9 +77,9 @@
                     this:GetParent():StopMovingOrSizing()
                 </OnMouseUp>
             </Scripts>
-            <NormalTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Up"/>
-            <PushedTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Down"/>
-            <HighlightTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Highlight" alphaMode="ADD"/>
+            <NormalTexture file="Interface\AddOns\Sunderstruck\Images\UI-ChatIM-SizeGrabber-Up"/>
+            <PushedTexture file="Interface\AddOns\Sunderstruck\Images\UI-ChatIM-SizeGrabber-Down"/>
+            <HighlightTexture file="Interface\AddOns\Sunderstruck\Images\UI-ChatIM-SizeGrabber-Highlight" alphaMode="ADD"/>
         </Button>
         </Frames>
         <ScrollChild>
