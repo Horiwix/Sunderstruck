@@ -41,7 +41,7 @@ Interface/
 
 type `/ss` to display usage information:
 
-![Sunderstruck Usage](https://i.imgur.com/MA00COd.png)
+![Sunderstruck Usage](https://i.imgur.com/TikzavX.png)
 
 ```
 /ss hide            -> hides display panel (still tracks and sends information)
@@ -51,4 +51,5 @@ type `/ss` to display usage information:
 /ss test            -> displays all player rows with test names
 /ss clear           -> clears and reset the rows AND sunders history
 /ss history         -> prints sunder count per player to chat (history resets on GUI reload)
+/ss check           -> prints version information from other players with this addon
 ```

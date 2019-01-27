@@ -3,7 +3,7 @@
 ## Author: Horiwix
 ## Notes: Gives information about nearby sunder casts
 ## DefaultState: Enabled
-## Version: 0.1.0
+## Version: 1.0
 ## LoadOnDemand: 0
 ## SavedVariablesPerCharacter: Sunderstruck_Vars
 
