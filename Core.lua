@@ -35,6 +35,8 @@ local responses = {}
 local history = {}
 -- Names of Players that have the addon
 local with_addon = {}
+-- Names of Players that have KTM+DPSMate
+local with_klhtmhook = {}
 
 
 function me.EVENT()
@@ -65,6 +67,8 @@ function me.EVENT()
             me.newsunder(arg4, a2)
         end
     elseif event == 'CHAT_MSG_ADDON' and arg1 == 'KLHTMHOOK' then
+        with_klhtmhook[arg4] = true
+
         -- event from DPSMate - will be used if player does not have Sunderstruck
         if not arg2 or with_addon[arg4] ~= nil then return end
         for cat, _ in pairs(loadstring('return {'..arg2..'}')()) do
@@ -77,22 +81,7 @@ end
 
 function me.UPDATE()
     if request_time and GetTime() - request_time >= REQUEST_WAIT_TIME then
-        request_time = nil
-
-        local my_version = GetAddOnMetadata('Sunderstruck', 'Version') or 'nil'
-        local names_my_version = ''
-        local names_other = ''
-        for k in pairs(responses) do
-            if responses[k] == my_version then
-                names_my_version = k .. ', ' .. names_my_version
-            else
-                names_other = k .. ', ' .. names_other
-            end
-        end
-        me.print('Players in group with version ' .. my_version .. ': { ' .. names_my_version .. ' }')
-        me.print('Players in group with other versions: { ' .. names_other .. ' }')
-        me.print('Note: players without Sunderstruck, but with DPSMate will also be recorded but do not appear in the list')
-        responses = {}
+        me.finish_ver_request()
     end
 
     if sunder_cast_time then
@@ -162,6 +151,33 @@ end
 
 function me.status(test)
     return test and '|cff00ff00on|r' or '|cffff0000off|r'
+end
+
+function me.finish_ver_request()
+    request_time = nil
+
+    local my_version = GetAddOnMetadata('Sunderstruck', 'Version') or 'nil'
+    local names_my_version = ''
+    local names_other = ''
+    local names_klhtmhook = ''
+
+    for k in pairs(responses) do
+        if responses[k] == my_version then
+            names_my_version = k .. ', ' .. names_my_version
+        else
+            names_other = k .. ', ' .. names_other
+        end
+    end
+
+    for k in pairs(with_klhtmhook) do
+        names_klhtmhook = k .. ', ' .. names_klhtmhook
+    end
+
+    me.print('Players in group with version ' .. my_version .. ': { ' .. names_my_version .. ' }')
+    me.print('Players in group with other versions: { ' .. names_other .. ' }')
+    me.print('Players in group with KTM+DPSMate: { ' .. names_klhtmhook .. ' }')
+    me.print('Note: players without Sunderstruck, but with KTM+DPSMate will also be recorded but will not appear in the list until they have produced threat.')
+    responses = {}
 end
 
 function me.check_lock()
