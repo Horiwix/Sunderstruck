@@ -49,6 +49,6 @@ type `/ss` to display usage information:
 /ss alpha <0-1>     -> changes the alpha channel of panel's background (0 - invisible, 1 - fully visible)
 /ss row_alpha <0-1> -> changes the alpha channel of player rows (0 - invisible, 1 - fully visible; Name will always be displayed)
 /ss test            -> displays all player rows with test names
-/ss clear           -> clears and reset the rows
+/ss clear           -> clears and reset the rows AND sunders history
 /ss history         -> prints sunder count per player to chat (history resets on GUI reload)
 ```

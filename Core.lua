@@ -196,7 +196,10 @@ function SlashCmdList.SUNDERSTRUCK(msg)
             row:SetPoint("TOPLEFT", me, "TOPLEFT", 0, 0)
             row:Hide()
         end
+        history = {}
+        me.print("Cleared")
     elseif cmd == 'history' then
+        me.print("History:")
         for k in pairs(history) do
             me.print(k .. ' : ' .. history[k])
         end
