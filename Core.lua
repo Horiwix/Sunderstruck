@@ -17,9 +17,11 @@ end
 
 ----- SUNDER
 -- Wait time for errors after sunder cast
-local ERROR_WAIT_TIME = 0.25
+local ERROR_WAIT_TIME = 0.1
 -- Time when sunder was casted
 local sunder_cast_time = nil
+-- If something else was casted between sunder and wait time
+local not_sunder_casted = false
 local err_cant_cast = false
 local err_missed = false
 
@@ -70,7 +72,7 @@ function me.EVENT()
         with_klhtmhook[arg4] = true
 
         -- event from DPSMate - will be used if player does not have Sunderstruck
-        if not arg2 or with_addon[arg4] ~= nil then return end
+        if not arg2 or with_addon[arg4] ~= nil or arg4 == UnitName('player') then return end
         for cat, _ in pairs(loadstring('return {'..arg2..'}')()) do
             if cat == 'Sunder Armor' then
                 me.newsunder(arg4, 'false')
@@ -85,10 +87,10 @@ function me.UPDATE()
     end
 
     if sunder_cast_time then
-        if err_cant_cast or err_missed or GetTime() - sunder_cast_time >= ERROR_WAIT_TIME then
+        if not_sunder_casted or err_cant_cast or err_missed or GetTime() - sunder_cast_time >= ERROR_WAIT_TIME then
             sunder_cast_time = nil
             -- not Out of range / out of rage / etc...
-            if not err_cant_cast then
+            if not_sunder_casted or not err_cant_cast then
                 if GetNumRaidMembers() > 0 then
                     SendAddonMessage('Sunderstruck', 'sunder ' .. tostring(err_missed), 'RAID')
                 elseif GetNumPartyMembers() > 0 then
@@ -99,10 +101,12 @@ function me.UPDATE()
             end
             err_cant_cast = false
             err_missed = false
+            not_sunder_casted = false
         end
     else
         err_cant_cast = false
-        err_missed = false 
+        err_missed = false
+        not_sunder_casted = false
     end
 end
 
@@ -142,6 +146,29 @@ me.addsunderthreat = function()
     me.savedaddsunderthreat()
 end
 klhtm.combat.addsunderthreat = me.addsunderthreat
+
+me.saveduseaction = UseAction
+me.newuseaction = function(actionindex, x, y)
+    className, _, _= UnitClass("player");
+    if not ((className == "Warrior") and actionindex and (GetActionText(actionindex) == nil) and (GetActionTexture(actionindex) == "Interface\\Icons\\Ability_Warrior_Sunder")) then
+        not_sunder_casted = true
+    end
+    me.saveduseaction(actionindex, x, y)
+end
+UseAction = me.newuseaction
+
+me.savedcastspellbyname = CastSpellByName
+me.newcastspellbyname = function(name, onself)
+    if string.find(name, klhtm.string.get("spell", "sunder")) then
+        -- UseAction is triggered before and will always set not_sunder_casted = true
+        -- This will override it instantly
+        not_sunder_casted = false
+    else
+        not_sunder_casted = true
+    end
+    me.savedcastspellbyname(name, onself)
+end
+CastSpellByName = me.newcastspellbyname
 
 function me.print(msg)
     if DEFAULT_CHAT_FRAME and msg then
